@@ -61,6 +61,40 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  // Contact form submit
+  var form = document.getElementById('contact-form');
+  if (form) {
+    var statusEl = document.getElementById('contact-status');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var formData = new FormData(form);
+      var payload = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        service: formData.get('service'),
+        message: formData.get('message')
+      };
+      if (statusEl) statusEl.textContent = 'Sending...';
+      fetch('/.netlify/functions/send-whatsapp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) { return res.json().catch(function(){ return {}; }); })
+      .then(function(res) {
+        if (res && res.success) {
+          if (statusEl) statusEl.textContent = 'Thanks! We\'ll be in touch shortly.';
+          form.reset();
+        } else {
+          if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
+        }
+      })
+      .catch(function() {
+        if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
+      });
+    });
+  }
 });
 
 

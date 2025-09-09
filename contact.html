@@ -51,12 +51,12 @@
       </section>
       <section class="reveal reveal-delay-1">
         <div class="container">
-          <div class="form-grid">
-            <input class="input" placeholder="Name">
-            <input class="input" placeholder="Mobile Number">
-            <input class="input full" placeholder="Email">
-            <select class="full">
-              <option>Select a Service</option>
+          <form class="form-grid" id="contact-form">
+            <input class="input" name="name" placeholder="Name" required>
+            <input class="input" name="phone" placeholder="Mobile Number" required>
+            <input class="input full" type="email" name="email" placeholder="Email" required>
+            <select class="full" name="service" required>
+              <option value="">Select a Service</option>
               <option>Advanced SEO</option>
               <option>Performance Marketing</option>
               <option>Website Development</option>
@@ -64,9 +64,10 @@
               <option>Graphic Designing</option>
               <option>Brand Management</option>
             </select>
-            <textarea class="input full" rows="4" placeholder="Tell us about your goals"></textarea>
-            <button class="btn btn-cta full"><span class="dot"></span> Submit</button>
-          </div>
+            <textarea class="input full" name="message" rows="4" placeholder="Tell us about your goals" required></textarea>
+            <button type="submit" class="btn btn-cta full"><span class="dot"></span> Submit</button>
+            <div id="contact-status" class="full" style="margin-top:8px;color:#8aa0b9;"></div>
+          </form>
           <div class="spacer-lg"></div>
           <div class="cards">
             <div class="card"><h3>Address</h3><p>Mumbai, Thane, Pune</p></div>

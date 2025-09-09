@@ -11,6 +11,22 @@ A static website for Urban Admark featuring landing, services, AI, case studies,
 
 Then visit: `Urbanadmark.netlify.app`
 
+### WhatsApp form notifications
+This site includes a Netlify Function to send contact submissions to WhatsApp via WhatsApp Cloud API.
+
+1) In Netlify project settings → Environment variables add:
+   - `WHATSAPP_TOKEN`: Permanent token from Meta app
+   - `WHATSAPP_PHONE_NUMBER_ID`: Phone number ID from WhatsApp Cloud
+   - `WHATSAPP_TO_NUMBER`: Destination number in international format, e.g. `919970809596`
+2) Deploy the site on Netlify. The function is at `/.netlify/functions/send-whatsapp`.
+3) Use the Contact page form to test.
+
+Local dev: use `netlify-cli` to run functions locally
+```
+npm i -g netlify-cli
+netlify dev
+```
+
 ## Project structure
 ```
 Urban Admark/
