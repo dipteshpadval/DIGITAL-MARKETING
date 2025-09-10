@@ -1,5 +1,6 @@
 function bindAnimatedButtons() {
-  document.querySelectorAll('.btn').forEach(function(button) {
+  // Opt-in only: moving spotlight disabled by default
+  document.querySelectorAll('[data-spotlight="on"]').forEach(function(button) {
     button.addEventListener('pointermove', function(e) {
       var rect = button.getBoundingClientRect();
       var x = e.clientX - rect.left;
@@ -45,11 +46,37 @@ function bindHeroParallax() {
   requestAnimationFrame(update);
 }
 
+function bindNavUnderline() {
+  var nav = document.querySelector('.nav-links');
+  if (!nav) return;
+  var set = function(el) {
+    var r = el.getBoundingClientRect();
+    var nr = nav.getBoundingClientRect();
+    var left = r.left - nr.left;
+    nav.style.setProperty('--u-left', left + 'px');
+    nav.style.setProperty('--u-width', r.width + 'px');
+    nav.style.setProperty('--u-opacity', 1);
+  };
+  nav.addEventListener('mouseleave', function(){
+    nav.style.setProperty('--u-opacity', 0);
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('mouseenter', function(){ set(a); });
+    // If current page link has aria-current or matches URL, set on load
+    if (a.getAttribute('aria-current') === 'page' || a.href === window.location.href) {
+      set(a);
+    }
+  });
+}
+
+// initialize after DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
   bindAnimatedButtons();
   bindMobileMenu();
   bindHeaderScroll();
   bindHeroParallax();
+  bindThreeDTilt();
+  bindNavUnderline();
   // Scroll reveal
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
@@ -76,25 +103,63 @@ document.addEventListener('DOMContentLoaded', function() {
         message: formData.get('message')
       };
       if (statusEl) statusEl.textContent = 'Sending...';
-      fetch('/.netlify/functions/send-whatsapp', {
+      // Send to WhatsApp Function
+      var wReq = fetch('/.netlify/functions/send-whatsapp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      })
-      .then(function(res) { return res.json().catch(function(){ return {}; }); })
-      .then(function(res) {
-        if (res && res.success) {
-          if (statusEl) statusEl.textContent = 'Thanks! We\'ll be in touch shortly.';
-          form.reset();
-        } else {
-          if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
-        }
-      })
-      .catch(function() {
-        if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
+      }).then(function(res) { return res.json().catch(function(){ return {}; }); });
+
+      // Submit to Netlify Forms
+      var fReq = fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': form.getAttribute('name') || 'contact',
+          'name': payload.name,
+          'phone': payload.phone,
+          'email': payload.email,
+          'service': payload.service,
+          'message': payload.message
+        }).toString()
       });
+
+      Promise.allSettled([wReq, fReq])
+        .then(function(results) {
+          var wOk = results[0].status === 'fulfilled' && results[0].value && results[0].value.success;
+          var fOk = results[1].status === 'fulfilled';
+          if (wOk || fOk) {
+            if (statusEl) statusEl.textContent = 'Thanks! We\'ll be in touch shortly.';
+            form.reset();
+          } else {
+            if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
+          }
+        })
+        .catch(function() {
+          if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
+        });
     });
   }
 });
+
+function bindThreeDTilt() {
+  // Opt-in only: elements must declare data-tilt="on"
+  var elements = document.querySelectorAll('[data-tilt="on"]');
+  if (!elements.length) return;
+  var maxTilt = 8; // degrees
+  elements.forEach(function(el) {
+    el.addEventListener('pointermove', function(e) {
+      var rect = el.getBoundingClientRect();
+      var px = (e.clientX - rect.left) / rect.width;
+      var py = (e.clientY - rect.top) / rect.height;
+      var tiltX = (py - 0.5) * -2 * maxTilt;
+      var tiltY = (px - 0.5) * 2 * maxTilt;
+      el.style.transform = 'perspective(800px) translateY(-2px) rotateX(' + tiltX.toFixed(2) + 'deg) rotateY(' + tiltY.toFixed(2) + 'deg)';
+    });
+    el.addEventListener('pointerleave', function() {
+      el.style.transform = '';
+    });
+  });
+}
 
 

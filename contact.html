@@ -51,7 +51,9 @@
       </section>
       <section class="reveal reveal-delay-1">
         <div class="container">
-          <form class="form-grid" id="contact-form">
+          <form class="form-grid" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+            <input type="hidden" name="form-name" value="contact">
+            <input type="text" name="bot-field" style="display:none">
             <input class="input" name="name" placeholder="Name" required>
             <input class="input" name="phone" placeholder="Mobile Number" required>
             <input class="input full" type="email" name="email" placeholder="Email" required>

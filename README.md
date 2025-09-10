@@ -27,6 +27,14 @@ npm i -g netlify-cli
 netlify dev
 ```
 
+### Netlify Forms (store submissions and optional email notifications)
+The contact form is enabled for Netlify Forms. Submissions appear in your Netlify dashboard.
+
+Steps:
+- Ensure the form element has `name="contact"`, `data-netlify="true"`, and a hidden `form-name` field (already added).
+- In Netlify → Forms → Notifications, add an email notification if you want emails for each submission.
+- View submissions in Netlify → Forms → contact.
+
 ## Project structure
 ```
 Urban Admark/
