@@ -15,9 +15,22 @@ function bindMobileMenu() {
   var btn = document.querySelector('.menu-btn');
   var panel = document.querySelector('.mobile-panel');
   if (!btn || !panel) return;
-  btn.addEventListener('click', function() {
-    panel.classList.toggle('open');
-  });
+  var isOpen = false;
+  function setState(open) {
+    isOpen = open;
+    panel.classList.toggle('open', open);
+    document.body.classList.toggle('no-scroll', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-controls', 'mobile-panel');
+  panel.setAttribute('id', 'mobile-panel');
+  btn.addEventListener('click', function() { setState(!isOpen); });
+  // Close menu on escape
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && isOpen) setState(false); });
+  // Close when clicking a link
+  panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setState(false); }); });
 }
 
 function bindHeaderScroll() {

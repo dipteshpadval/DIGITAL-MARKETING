@@ -9,7 +9,8 @@ A static website for Urban Admark featuring landing, services, AI, case studies,
   - Node (npx): `npx serve -l 5500`
   - VS Code: Live Server extension
 
-Then visit: `Urbanadmark.netlify.app`
+Then visit: `Urbanadmark.netlify.app
+`
 
 ### WhatsApp form notifications
 This site includes a Netlify Function to send contact submissions to WhatsApp via WhatsApp Cloud API.
