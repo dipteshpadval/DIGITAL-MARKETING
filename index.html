@@ -56,34 +56,85 @@
         <div class="container hero-grid">
           <div class="glow-veil"></div>
           <div class="hero-copy">
-            <span class="eyebrow"><span class="pill-dot"></span> Best Digital Marketing Company</span>
-            <h1 class="h1-gradient">Powerful Digital Solutions With Urban AdMark.</h1>
-            <p>High-ROI performance-based ads, advanced SEO, social media, branding, and digital automation to grow your business with data-driven decisions.</p>
+            <a href="about.html" class="eyebrow clickable-element"><span class="pill-dot"></span> Best Digital Marketing Company</a>
+            <h1 class="h1-gradient clickable-title" onclick="window.location.href='about.html'">Powerful Digital Solutions With Urban AdMark.</h1>
+            <p class="clickable-text" onclick="window.location.href='services.html'">High-ROI performance-based ads, advanced SEO, social media, branding, and digital automation to grow your business with data-driven decisions.</p>
             <div class="hero-cta">
-              <a class="btn btn-cta" href="contact.html"><span class="dot"></span> Get Free Audit</a>
-              <a class="btn btn-ghost" href="services.html">Explore Services</a>
+              <a class="btn btn-cta audit-btn" href="contact.html" onclick="trackAuditClick()" role="button" tabindex="0">
+                <span class="dot"></span> 
+                <span class="btn-text">Get Free Audit</span>
+                <span class="btn-subtitle">No commitment required</span>
+              </a>
+              <a class="btn btn-ghost services-btn" href="services.html" onclick="trackServicesClick()" role="button" tabindex="0">
+                <span class="btn-text">Explore Services</span>
+                <span class="btn-subtitle">See all our offerings</span>
+              </a>
             </div>
             <div class="spacer-sm"></div>
-            <span class="badge-new"><span class="pill-dot"></span> New 2025 Growth Stack</span>
+            <div class="audit-benefits">
+              <div class="benefit-item">
+                <span class="benefit-icon">✓</span>
+                <span class="benefit-text">Free website analysis</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon">✓</span>
+                <span class="benefit-text">SEO audit report</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon">✓</span>
+                <span class="benefit-text">Growth recommendations</span>
+              </div>
+            </div>
+            <div class="audit-cta-text">
+              <p>Click above to get your <strong>free marketing audit</strong> and discover growth opportunities for your business.</p>
+            </div>
+            <a href="ai.html" class="badge-new clickable-badge"><span class="pill-dot"></span> New 2025 Growth Stack</a>
             <div class="trust">
               <span>Trusted by</span>
-              <span class="logo-chip">TrueShape</span>
-              <span class="logo-chip">Paranjape Foods</span>
-              <span class="logo-chip">Ace Cars</span>
-              <span class="logo-chip">Optimum Living</span>
+              <a href="case-studies.html" class="logo-chip clickable-chip">TrueShape</a>
+              <a href="case-studies.html" class="logo-chip clickable-chip">Paranjape Foods</a>
+              <a href="case-studies.html" class="logo-chip clickable-chip">Ace Cars</a>
+              <a href="case-studies.html" class="logo-chip clickable-chip">Optimum Living</a>
             </div>
             <div class="stats">
-              <div class="stat"><div class="value">5+ yrs</div><div class="label">Expertise</div></div>
-              <div class="stat"><div class="value">25+</div><div class="label">Projects</div></div>
-              <div class="stat"><div class="value">14+</div><div class="label">Success Stories</div></div>
-              <div class="stat"><div class="value">24/7</div><div class="label">Support</div></div>
+              <div class="stat clickable-stat" onclick="window.location.href='about.html'">
+                <div class="value">5+ yrs</div>
+                <div class="label">Expertise</div>
+              </div>
+              <div class="stat clickable-stat" onclick="window.location.href='case-studies.html'">
+                <div class="value">25+</div>
+                <div class="label">Projects</div>
+              </div>
+              <div class="stat clickable-stat" onclick="window.location.href='case-studies.html'">
+                <div class="value">14+</div>
+                <div class="label">Success Stories</div>
+              </div>
+              <div class="stat clickable-stat" onclick="window.location.href='contact.html'">
+                <div class="value">24/7</div>
+                <div class="label">Support</div>
+              </div>
             </div>
           </div>
           <div>
             <div class="hero-media">
-              <div class="media-tile tall"><img alt="Marketing team brainstorming with sticky notes" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" loading="lazy"></div>
-              <div class="media-tile"><img alt="Analytics dashboard and marketing KPIs on laptop" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop" loading="lazy"></div>
-              <div class="media-tile"><img alt="Digital marketing charts and graphs" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" loading="lazy"></div>
+              <div class="media-tile tall clickable-media" onclick="window.location.href='about.html'">
+                <img alt="Marketing team brainstorming with sticky notes" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" loading="lazy">
+                <div class="media-overlay">
+                  <span class="media-label">Our Team</span>
+                </div>
+              </div>
+              <div class="media-tile clickable-media" onclick="window.location.href='services.html'">
+                <img alt="Analytics dashboard and marketing KPIs on laptop" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop" loading="lazy">
+                <div class="media-overlay">
+                  <span class="media-label">Analytics</span>
+                </div>
+              </div>
+              <div class="media-tile clickable-media" onclick="window.location.href='case-studies.html'">
+                <img alt="Digital marketing charts and graphs" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" loading="lazy">
+                <div class="media-overlay">
+                  <span class="media-label">Results</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -161,21 +212,6 @@
     </main>
 
     <footer>
-      <style>
-        /* Fix footer link clickability */
-        .footer-grid > div {
-          pointer-events: auto !important;
-        }
-        .footer-grid > div a {
-          pointer-events: auto !important;
-          position: relative !important;
-          z-index: 10 !important;
-          display: inline-block !important;
-        }
-        .footer-grid > div:hover a {
-          pointer-events: auto !important;
-        }
-      </style>
       <div class="container footer-grid">
         <div>
           <a href="index.html" class="brand"><img class="brand-logo" src="assets/logo.png" alt="Urban AdMark"> Urban AdMark</a>
@@ -198,12 +234,12 @@
         </div>
         <div>
           <h4>Our Services</h4>
-          <a href="services.html#performance-marketing" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Performance Marketing</a><br>
-          <a href="services.html#seo" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Advanced SEO</a><br>
-          <a href="services.html#smm" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Social Media Management</a><br>
-          <a href="services.html#graphic-design" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Graphics Designing</a><br>
-          <a href="services.html#web-development" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Web & App Development</a><br>
-          <a href="services.html#brand-management" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Brand Management</a>
+          <a href="performance-marketing.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Performance Marketing</a><br>
+          <a href="seo.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Advanced SEO</a><br>
+          <a href="social-media.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Social Media Management</a><br>
+          <a href="graphic-design.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Graphics Designing</a><br>
+          <a href="web-development.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Web & App Development</a><br>
+          <a href="brand-management.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Brand Management</a>
         </div>
         <div>
           <h4>Newsletter</h4>
@@ -222,7 +258,112 @@
     <a href="contact.html" class="floating-cta btn btn-primary"><span class="dot"></span> Get Audit</a>
 
     <script src="assets/js/main.js?v=3"></script>
+    <script>
+      // Track audit button clicks
+      function trackAuditClick() {
+        console.log('Free Audit button clicked - redirecting to contact.html');
+        
+        // Add visual feedback
+        const auditBtn = document.querySelector('.audit-btn');
+        if (auditBtn) {
+          auditBtn.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            auditBtn.style.transform = '';
+          }, 150);
+        }
+        
+        // Optional: Add smooth scroll to contact form
+        setTimeout(() => {
+          const contactForm = document.querySelector('#contact-form');
+          if (contactForm) {
+            contactForm.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+
+      // Track services button clicks
+      function trackServicesClick() {
+        console.log('Explore Services button clicked - redirecting to services.html');
+        
+        // Add visual feedback
+        const servicesBtn = document.querySelector('.services-btn');
+        if (servicesBtn) {
+          servicesBtn.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            servicesBtn.style.transform = '';
+          }, 150);
+        }
+        
+        // Optional: Add smooth scroll to services section
+        setTimeout(() => {
+          const servicesSection = document.querySelector('#services');
+          if (servicesSection) {
+            servicesSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+
+      // Add click tracking to benefit items
+      document.addEventListener('DOMContentLoaded', function() {
+        const benefitItems = document.querySelectorAll('.benefit-item');
+        benefitItems.forEach(item => {
+          item.addEventListener('click', function() {
+            console.log('Benefit item clicked:', this.textContent);
+            
+            // Scroll to audit button
+            const auditBtn = document.querySelector('.audit-btn');
+            if (auditBtn) {
+              auditBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              auditBtn.focus();
+            }
+          });
+        });
+
+        // Add keyboard accessibility for both buttons
+        const auditBtn = document.querySelector('.audit-btn');
+        const servicesBtn = document.querySelector('.services-btn');
+        
+        if (auditBtn) {
+          auditBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+        }
+
+        if (servicesBtn) {
+          servicesBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+        }
+
+        // Add touch support for mobile
+        if (auditBtn) {
+          auditBtn.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+          });
+          
+          auditBtn.addEventListener('touchend', function() {
+            this.style.transform = '';
+          });
+        }
+
+        if (servicesBtn) {
+          servicesBtn.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+          });
+          
+          servicesBtn.addEventListener('touchend', function() {
+            this.style.transform = '';
+          });
+        }
+      });
+    </script>
   </body>
-  </html>
+</html>
 
 

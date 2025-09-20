@@ -6,7 +6,175 @@
     <title>Contact - Urban AdMark</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    <link rel="stylesheet" href="assets/css/style.css?v=5">
+    <link rel="stylesheet" href="assets/css/style.css?v=8">
+    <style>
+      /* Enhanced form styling to match website theme */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px;
+        background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+        border: 1px solid rgba(110, 231, 255, 0.18);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      }
+      
+      @media (min-width: 720px) {
+        .form-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .form-grid .full {
+          grid-column: 1 / -1;
+        }
+      }
+      
+      /* Enhanced input styling - NO RED BORDERS */
+      .input, select, textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(110, 231, 255, 0.2);
+        background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+        color: var(--text);
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+      
+      .input:hover, select:hover, textarea:hover {
+        border-color: rgba(110, 231, 255, 0.4);
+        background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(34, 211, 238, 0.1);
+      }
+      
+      .input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--secondary);
+        box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+        background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.1));
+      }
+      
+      .input::placeholder, textarea::placeholder {
+        color: var(--muted);
+        opacity: 0.8;
+      }
+      
+      /* Enhanced select dropdown styling */
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 12px center;
+        background-repeat: no-repeat;
+        background-size: 16px;
+        padding-right: 40px;
+        cursor: pointer;
+      }
+      
+      select option {
+        background: var(--card);
+        color: var(--text);
+        padding: 8px 12px;
+        border: none;
+      }
+      
+      /* Enhanced textarea styling */
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+        font-family: inherit;
+        line-height: 1.5;
+      }
+      
+      /* Enhanced button styling */
+      .btn-cta {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        border: 2px solid transparent;
+        border-radius: 12px;
+        padding: 16px 24px;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(34, 211, 238, 0.3);
+      }
+      
+      .btn-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(34, 211, 238, 0.4);
+        background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      }
+      
+      .btn-cta:active {
+        transform: translateY(0);
+      }
+      
+      /* Form validation styling - NO RED BORDERS */
+      .input:invalid, select:invalid, textarea:invalid {
+        border-color: rgba(110, 231, 255, 0.2);
+        box-shadow: none;
+      }
+      
+      .input:valid, select:valid, textarea:valid {
+        border-color: rgba(52, 211, 153, 0.3);
+        box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.1);
+      }
+      
+      /* Contact status styling */
+      #contact-status {
+        text-align: center;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      
+      #contact-status.success {
+        background: rgba(52, 211, 153, 0.1);
+        color: var(--success);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+      }
+      
+      #contact-status.error {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--danger);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+      
+      /* Remove footer separate containers */
+      .footer-grid > div {
+        position: static;
+        background: none;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        transform: none;
+      }
+      
+      .footer-grid > div::after {
+        display: none;
+      }
+      
+      .footer-grid > div:hover {
+        box-shadow: none;
+        border-color: transparent;
+        transform: none;
+      }
+      
+      .footer-grid > div:hover::after {
+        opacity: 0;
+        filter: none;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -54,20 +222,20 @@
           <form class="form-grid" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
             <input type="hidden" name="form-name" value="contact">
             <input type="text" name="bot-field" style="display:none">
-            <input class="input" name="name" placeholder="Name" required>
-            <input class="input" name="phone" placeholder="Mobile Number" required>
-            <input class="input full" type="email" name="email" placeholder="Email" required>
-            <select class="full" name="service" required>
+            <input class="input" name="name" placeholder="Your Name" required>
+            <input class="input" name="phone" placeholder="Mobile Number" type="tel" required>
+            <input class="input full" type="email" name="email" placeholder="Email Address" required>
+            <select class="input full" name="service" required>
               <option value="">Select a Service</option>
-              <option>Advanced SEO</option>
-              <option>Performance Marketing</option>
-              <option>Website Development</option>
-              <option>Social Media Management</option>
-              <option>Graphic Designing</option>
-              <option>Brand Management</option>
+              <option value="Performance Marketing">Performance Marketing</option>
+              <option value="Advanced SEO">Advanced SEO</option>
+              <option value="Web & App Development">Web & App Development</option>
+              <option value="Social Media Management">Social Media Management</option>
+              <option value="Graphics Designing">Graphics Designing</option>
+              <option value="Brand Management">Brand Management</option>
             </select>
-            <textarea class="input full" name="message" rows="4" placeholder="Tell us about your goals" required></textarea>
-            <button type="submit" class="btn btn-cta full"><span class="dot"></span> Submit</button>
+            <textarea class="input full" name="message" rows="4" placeholder="Tell us about your project goals and requirements" required></textarea>
+            <button type="submit" class="btn btn-cta full"><span class="dot"></span> Submit Request</button>
             <div id="contact-status" class="full" style="margin-top:8px;color:#8aa0b9;"></div>
           </form>
           <div class="spacer-lg"></div>
@@ -81,19 +249,9 @@
     </main>
     <footer>
       <style>
-        /* Fix footer link clickability */
-        .footer-grid > div {
-          pointer-events: auto !important;
-        }
-        .footer-grid > div a {
-          pointer-events: auto !important;
-          position: relative !important;
-          z-index: 10 !important;
-          display: inline-block !important;
-        }
-        .footer-grid > div:hover a {
-          pointer-events: auto !important;
-        }
+        .footer-grid > div { pointer-events: auto !important; }
+        .footer-grid > div a { pointer-events: auto !important; position: relative !important; z-index: 10 !important; display: inline-block !important; }
+        .footer-grid > div:hover a { pointer-events: auto !important; }
       </style>
       <div class="container footer-grid">
         <div>
@@ -117,12 +275,12 @@
         </div>
         <div>
           <h4>Our Services</h4>
-          <a href="services.html#performance-marketing" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Performance Marketing</a><br>
-          <a href="services.html#seo" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Advanced SEO</a><br>
-          <a href="services.html#smm" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Social Media Management</a><br>
-          <a href="services.html#graphic-design" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Graphics Designing</a><br>
-          <a href="services.html#web-development" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Web & App Development</a><br>
-          <a href="services.html#brand-management" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Brand Management</a>
+          <a href="performance-marketing.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Performance Marketing</a><br>
+          <a href="seo.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Advanced SEO</a><br>
+          <a href="social-media.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Social Media Management</a><br>
+          <a href="graphic-design.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Graphics Designing</a><br>
+          <a href="web-development.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Web & App Development</a><br>
+          <a href="brand-management.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Brand Management</a>
         </div>
         <div>
           <h4>Newsletter</h4>
@@ -138,8 +296,60 @@
       </div>
     </footer>
     <a href="contact.html" class="floating-cta btn btn-primary"><span class="dot"></span> Get Audit</a>
-    <script src="assets/js/main.js?v=2"></script>
+    <script src="assets/js/main.js?v=3"></script>
+    <script>
+      // Enhanced form handling - REDIRECT TO THANK YOU PAGE
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('contact-status');
+        const select = document.querySelector('select[name="service"]');
+        
+        // Custom select styling
+        if (select) {
+          select.addEventListener('change', function() {
+            if (this.value) {
+              this.style.borderColor = 'rgba(52, 211, 153, 0.3)';
+              this.style.background = 'linear-gradient(180deg, rgba(52, 211, 153, 0.1), rgba(52, 211, 153, 0.05))';
+            } else {
+              this.style.borderColor = 'rgba(110, 231, 255, 0.2)';
+              this.style.background = 'linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04))';
+            }
+          });
+        }
+        
+        // Form submission handling - REDIRECT TO THANK YOU PAGE
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            status.innerHTML = 'Sending your request...';
+            status.className = '';
+            
+            // Simulate form submission and redirect to thank you page
+            setTimeout(() => {
+              // Redirect to thank you page
+              window.location.href = 'thank-you.html';
+            }, 2000);
+          });
+        }
+        
+        // Enhanced input validation - NO RED BORDERS
+        const inputs = document.querySelectorAll('.input');
+        inputs.forEach(input => {
+          input.addEventListener('blur', function() {
+            if (this.checkValidity()) {
+              this.style.borderColor = 'rgba(52, 211, 153, 0.3)';
+              this.style.boxShadow = '0 0 0 2px rgba(52, 211, 153, 0.1)';
+            } else {
+              this.style.borderColor = 'rgba(110, 231, 255, 0.2)';
+              this.style.boxShadow = 'none';
+            }
+          });
+        });
+      });
+    </script>
   </body>
-  </html>
+</html>
 
 

@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
     <title>Services - Urban AdMark</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    <link rel="stylesheet" href="assets/css/style.css?v=5">
+    <link rel="stylesheet" href="assets/css/style.css?v=6">
   </head>
   <body>
     <header>
@@ -51,31 +51,34 @@
       </section>
       <section class="reveal reveal-delay-1">
         <div class="container cards">
-          <div class="card"><h3>Performance Marketing</h3><p>ROI-focused ads across Meta, Google, and LinkedIn with precise targeting.</p></div>
-          <div class="card"><h3>Advanced SEO</h3><p>Technical audits, on-page optimization, backlinks, and local SEO.</p></div>
-          <div class="card"><h3>Social Media Management</h3><p>Content strategy, optimization, and ads to convert followers into clients.</p></div>
-          <div class="card"><h3>Graphics Designing</h3><p>Custom, ready-to-use visuals aligned with your brand.</p></div>
-          <div class="card"><h3>Web & App Development</h3><p>Responsive, fast, SEO-friendly websites designed to convert.</p></div>
-          <div class="card"><h3>Brand Management</h3><p>Build and maintain a strong brand identity across touchpoints.</p></div>
+          <a href="performance-marketing.html" class="card service-card">
+            <h3>Performance Marketing</h3>
+            <p>ROI-focused ads across Meta, Google, and LinkedIn with precise targeting.</p>
+          </a>
+          <a href="seo.html" class="card service-card">
+            <h3>Advanced SEO</h3>
+            <p>Technical audits, on-page optimization, backlinks, and local SEO.</p>
+          </a>
+          <a href="social-media.html" class="card service-card">
+            <h3>Social Media Management</h3>
+            <p>Content strategy, optimization, and ads to convert followers into clients.</p>
+          </a>
+          <a href="graphic-design.html" class="card service-card">
+            <h3>Graphics Designing</h3>
+            <p>Custom, ready-to-use visuals aligned with your brand.</p>
+          </a>
+          <a href="web-development.html" class="card service-card">
+            <h3>Web & App Development</h3>
+            <p>Responsive, fast, SEO-friendly websites designed to convert.</p>
+          </a>
+          <a href="brand-management.html" class="card service-card">
+            <h3>Brand Management</h3>
+            <p>Build and maintain a strong brand identity across touchpoints.</p>
+          </a>
         </div>
       </section>
     </main>
     <footer>
-      <style>
-        /* Fix footer link clickability */
-        .footer-grid > div {
-          pointer-events: auto !important;
-        }
-        .footer-grid > div a {
-          pointer-events: auto !important;
-          position: relative !important;
-          z-index: 10 !important;
-          display: inline-block !important;
-        }
-        .footer-grid > div:hover a {
-          pointer-events: auto !important;
-        }
-      </style>
       <div class="container footer-grid">
         <div>
           <a href="index.html" class="brand"><img class="brand-logo" src="assets/logo.png" alt="Urban AdMark"> Urban AdMark</a>
@@ -98,12 +101,12 @@
         </div>
         <div>
           <h4>Our Services</h4>
-          <a href="services.html#performance-marketing" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Performance Marketing</a><br>
-          <a href="services.html#seo" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Advanced SEO</a><br>
-          <a href="services.html#smm" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Social Media Management</a><br>
-          <a href="services.html#graphic-design" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Graphics Designing</a><br>
-          <a href="services.html#web-development" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Web & App Development</a><br>
-          <a href="services.html#brand-management" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Brand Management</a>
+          <a href="performance-marketing.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Performance Marketing</a><br>
+          <a href="seo.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Advanced SEO</a><br>
+          <a href="social-media.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Social Media Management</a><br>
+          <a href="graphic-design.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Graphics Designing</a><br>
+          <a href="web-development.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Web & App Development</a><br>
+          <a href="brand-management.html" style="color: inherit !important; text-decoration: underline !important; cursor: pointer !important; pointer-events: auto !important; position: relative !important; z-index: 10 !important;">Brand Management</a>
         </div>
         <div>
           <h4>Newsletter</h4>
@@ -119,8 +122,8 @@
       </div>
     </footer>
     <a href="contact.html" class="floating-cta btn btn-primary"><span class="dot"></span> Get Audit</a>
-    <script src="assets/js/main.js?v=2"></script>
+    <script src="assets/js/main.js?v=3"></script>
   </body>
-  </html>
+</html>
 
 
