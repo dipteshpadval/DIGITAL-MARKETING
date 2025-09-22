@@ -101,58 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
-  // Contact form submit
-  var form = document.getElementById('contact-form');
-  if (form) {
-    var statusEl = document.getElementById('contact-status');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var formData = new FormData(form);
-      var payload = {
-        name: formData.get('name'),
-        phone: formData.get('phone'),
-        email: formData.get('email'),
-        service: formData.get('service'),
-        message: formData.get('message')
-      };
-      if (statusEl) statusEl.textContent = 'Sending...';
-      // Send to WhatsApp Function
-      var wReq = fetch('/.netlify/functions/send-whatsapp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function(res) { return res.json().catch(function(){ return {}; }); });
-
-      // Submit to Netlify Forms
-      var fReq = fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': form.getAttribute('name') || 'contact',
-          'name': payload.name,
-          'phone': payload.phone,
-          'email': payload.email,
-          'service': payload.service,
-          'message': payload.message
-        }).toString()
-      });
-
-      Promise.allSettled([wReq, fReq])
-        .then(function(results) {
-          var wOk = results[0].status === 'fulfilled' && results[0].value && results[0].value.success;
-          var fOk = results[1].status === 'fulfilled';
-          if (wOk || fOk) {
-            if (statusEl) statusEl.textContent = 'Thanks! We\'ll be in touch shortly.';
-            form.reset();
-          } else {
-            if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
-          }
-        })
-        .catch(function() {
-          if (statusEl) statusEl.textContent = 'Failed to send. Please try again later.';
-        });
-    });
-  }
+  // Contact form submit - removed to allow natural form submission
 });
 
 function bindThreeDTilt() {

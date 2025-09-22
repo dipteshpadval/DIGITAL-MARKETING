@@ -4,8 +4,8 @@
 
 // Configuration
 $toEmail = 'digital@urbanadmark.com'; // Provided by user (ensure correct domain)
-$projectName = 'Balaji Emrald Website Lead';
-$redirectUrl = 'thankyou.html';
+$projectName = 'Urban AdMark Website Lead';
+$redirectUrl = 'thank-you.html';
 
 // Helper: sanitize input
 function get_post($key) {
@@ -13,11 +13,14 @@ function get_post($key) {
 }
 
 // Collect fields
-$name = get_post('fname');
-$mobile = get_post('mobile');
+$name = get_post('name');
+$mobile = get_post('phone');
+$email = get_post('email');
+$service = get_post('service');
+$message = get_post('message');
 
 // Basic validation
-if ($name === '' || $mobile === '') {
+if ($name === '' || $mobile === '' || $email === '' || $message === '') {
 	http_response_code(400);
 	echo 'Missing required fields.';
 	exit;
@@ -30,10 +33,13 @@ $ref = $_SERVER['HTTP_REFERER'] ?? 'direct';
 $time = date('Y-m-d H:i:s');
 
 // Build subject and message
-$subject = "$projectName - New Enquiry";
-$message = "New enquiry received:\n\n" .
+$subject = "$projectName - New Contact Form Submission";
+$message = "New contact form submission received:\n\n" .
 	"Name: $name\n" .
-	"Mobile: $mobile\n\n" .
+	"Email: $email\n" .
+	"Mobile: $mobile\n" .
+	"Service Interest: $service\n" .
+	"Message: $message\n\n" .
 	"Submitted At: $time\n" .
 	"IP: $ip\n" .
 	"User-Agent: $ua\n" .
@@ -43,8 +49,8 @@ $message = "New enquiry received:\n\n" .
 $headers = [];
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-Type: text/plain; charset=UTF-8';
-$headers[] = 'From: Balaji Emrald <no-reply@balajiemrald.com>';
-$headers[] = 'Reply-To: no-reply@balajiemrald.com';
+$headers[] = 'From: Urban AdMark <no-reply@urbanadmark.com>';
+$headers[] = 'Reply-To: ' . $email;
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 $headersStr = implode("\r\n", $headers);
 
@@ -55,9 +61,9 @@ try {
 	$f = fopen($csv, 'a');
 	if ($f) {
 		if ($firstWrite) {
-			fputcsv($f, ['time','name','mobile','ip','referrer','user_agent']);
+			fputcsv($f, ['time','name','email','mobile','service','message','ip','referrer','user_agent']);
 		}
-		fputcsv($f, [$time,$name,$mobile,$ip,$ref,$ua]);
+		fputcsv($f, [$time,$name,$email,$mobile,$service,$message,$ip,$ref,$ua]);
 		fclose($f);
 	}
 } catch (Throwable $e) {
